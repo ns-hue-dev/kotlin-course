@@ -3,199 +3,153 @@ package lesson.lesson13
 class homeworks {
 }
 
-
 fun main() {
-    // Задачи 1-11
-    val numbers = listOf(5, 10, 15, 20, 25, 30, 35)
-    val emptyList = listOf<Int>()
 
-    // 1. Проверить, что размер коллекции больше 5
-    println(numbers.size > 5)
+    // 1. Среднее время выполнения тестов
+    val testTimes = mapOf("login" to 10, "logout" to 20, "payment" to 30)
+    println("1. ${testTimes.values.average()}")
 
-    // 2. Проверить, что коллекция пустая
-    println(emptyList.isEmpty())
+    // 2. Список всех тестовых методов
+    val testMethods = mapOf("testLogin" to "smoke", "testPayment" to "regression")
+    println("2. ${testMethods.keys}")
 
-    // 3. Проверить, что коллекция не пустая
-    println(numbers.isNotEmpty())
+    // 3. Добавить новый тест и результат
+    val testResults = mutableMapOf("login" to "passed", "logout" to "failed")
+    testResults.put("payment", "passed")
+    println("3. $testResults")
 
-    // 4. Взять элемент по индексу или создать значение
-    println(numbers.getOrElse(10) { 0 })
+    // 4. Количество успешных тестов
+    val results = mapOf("login" to "passed", "logout" to "failed", "payment" to "passed")
+    println("4. ${results.count { it.value == "passed" }}")
 
-    // 5. Собрать коллекцию в строку
-    println(numbers.joinToString(", "))
+    // 5. Удалить исправленный баг
+    val bugs = mutableMapOf("bug1" to "open", "bug2" to "fixed")
+    bugs.remove("bug2")
+    println("5. $bugs")
 
-    // 6. Посчитать сумму всех значений
-    println(numbers.sum())
-
-    // 7. Посчитать среднее
-    println(numbers.average())
-
-    // 8. Взять максимальное число
-    println(numbers.maxOrNull())
-
-    // 9. Взять минимальное число
-    println(numbers.minOrNull())
-
-    // 10. Взять первое число или null
-    println(numbers.firstOrNull())
-
-    // 11. Проверить, что коллекция содержит элемент
-    println(numbers.contains(20))
-
-
-    // Задачи 12-23
-    val numbers2 = listOf(12, 18, 21, 24, 27, 30, 36, 42)
-    val words = listOf("кот", "собака", "дом", "машина", "кот")
-    val nullableWords = listOf("кот", null, "дом", null, "лес")
-
-    // 12. Отфильтровать числа по диапазону 18-30
-    println(numbers2.filter { it in 18..30 })
-
-    // 13. Убрать числа, которые делятся на 2 и 3 одновременно
-    println(numbers2.filterNot { it % 2 == 0 && it % 3 == 0 })
-
-    // 14. Удалить null элементы
-    println(nullableWords.filterNotNull())
-
-    // 15. Преобразовать слова в их длины
-    println(words.map { it.length })
-
-    // 16. Создать мапу: перевёрнутое слово - длина
-    println(words.associate { it.reversed() to it.length })
-
-    // 17. Отсортировать слова по алфавиту
-    println(words.sorted())
-
-    // 18. Взять первые 3 элемента
-    println(words.take(3))
-
-    // 19. Распечатать квадраты чисел
-    numbers2.forEach { println(it * it) }
-
-    // 20. Сгруппировать слова по первой букве
-    println(words.groupBy { it.first() })
-
-    // 21. Удалить дубли
-    println(words.distinct())
-
-    // 22. Отсортировать числа по убыванию
-    println(numbers2.sortedDescending())
-
-    // 23. Взять последние 3 элемента
-    println(words.takeLast(3))
-
-
-    // Задача 24. Характеристика числовой коллекции
-    println(describeNumbers(listOf()))
-    println(describeNumbers(listOf(1, 2, 3)))
-    println(describeNumbers(listOf(0, 1, 2, 3, 4)))
-    println(describeNumbers(listOf(3000, 3000, 3000, 3000, 3000)))
-    println(describeNumbers(listOf(8, 9, 10, 11, 12)))
-    println(describeNumbers(listOf(1000, 1001, 1002, 1003, 1004)))
-    println(describeNumbers(listOf(-20, -19, -18, -17, -16)))
-    println(describeNumbers(listOf(1001, 1002, 1003, 1004, 1005, 1006)))
-    println(describeNumbers(listOf(3, 14, 5, 6, 7)))
-    println(describeNumbers(listOf(1, 2, 4, 5, 6)))
-
-
-    // Задача 25. Анализ учебных оценок
-    val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
-    println(analyzeGrades(grades))
-
-
-    // Список для задач 26 и 27
-    val list = listOf(
-        "Стол", "табурет", "ваза", "Кружка", "Зеркало",
-        "ковер", "Шкаф", "часы", "Люстра", "подушка",
-        "Картина", "столик", "Вазон", "шторы", "Пуф",
-        "книга", "Фоторамка", "светильник", "Коврик",
-        "вешалка", "Подставка", "телевизор", "Комод",
-        "полка", "Абажур", "диван", "Кресло",
-        "занавеска", "Бра", "пепельница", "Глобус",
-        "статуэтка", "Поднос", "фигурка", "Ключница",
-        "плед", "Тумба", "игрушка", "Настенные часы",
-        "подсвечник", "Журнальный столик", "сувенир",
-        "Корзина для белья", "посуда", "Настольная лампа",
-        "торшер", "Этажерка"
-    )
-
-    // Задача 26. Создание каталога по первой букве
-    println(createCatalog(list))
-
-    // Задача 27. Средняя длина слов
-    println(averageWordLength(list))
-
-
-    // Задача 28. Категоризация чисел
-    val numbers3 = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
-    println(categorizeNumbers(numbers3))
-
-
-    // Задача 29. Поиск первого подходящего элемента
-    val ages = listOf(22, 18, 30, 45, 17, null, 60)
-    println(findAge(ages, 18))
-}
-
-
-// Задача 24
-fun describeNumbers(numbers: List<Int>): String {
-    return when {
-        numbers.isEmpty() -> "Пусто"
-        numbers.size < 5 -> "Короткая"
-        numbers.first() == 0 -> "Стартовая"
-        numbers.sum() > 10000 -> "Массивная"
-        numbers.average() == 10.0 -> "Сбалансированная"
-        numbers.joinToString("").length == 20 -> "Клейкая"
-        numbers.maxOrNull()!! < -10 -> "Отрицательная"
-        numbers.minOrNull()!! > 1000 -> "Положительная"
-        numbers.contains(3) && numbers.contains(14) -> "Пи***тая"
-        else -> "Уникальная"
+    // 6. Вывести страницы и статусы
+    val pages = mapOf("google.com" to 200, "example.com" to 404)
+    pages.forEach { (url, status) ->
+        println("6. Страница $url, статус $status")
     }
-}
 
+    // 7. Найти сервисы с долгим временем ответа
+    val services = mapOf("auth" to 100, "payment" to 500, "profile" to 200)
+    val slowServices = services.filter { it.value > 300 }
+    println("7. $slowServices")
 
-// Задача 25
-fun analyzeGrades(grades: List<Int>): List<Int> {
-    return grades
-        .filter { it >= 60 }
-        .sorted()
-        .take(3)
-}
+    // 8. Получить статус endpoint или значение по умолчанию
+    val apiResults = mapOf("/login" to "200", "/payment" to "500")
+    val apiStatus = apiResults.getOrElse("/profile") { "Не протестирован" }
+    println("8. $apiStatus")
 
+    // 9. Получить browserType, результат не может быть null
+    val config = mapOf("browserType" to "Chrome", "environment" to "test")
+    println("9. ${config.getValue("browserType")}")
 
-// Задача 26
-fun createCatalog(words: List<String>): Map<Char, List<String>> {
-    return words
-        .map { it.lowercase() }
-        .groupBy { it.first() }
-}
+    // 10. Создать копию словаря и добавить новую версию
+    val versions = mapOf("app1" to "1.0", "app2" to "2.0")
+    val newVersions = versions.plus("app3" to "3.0")
+    println("10. $newVersions")
 
+    // 11. Получить настройки устройства или настройки по умолчанию
+    val devices = mapOf("Samsung" to "Android 15", "iPhone" to "iOS 18")
+    val deviceSettings = devices.getOrDefault("Xiaomi", "Настройки по умолчанию")
+    println("11. $deviceSettings")
 
-// Задача 27
-fun averageWordLength(words: List<String>): String {
-    val average = words
-        .map { it.length }
-        .average()
+    // 12. Проверить наличие кода ошибки
+    val errors = mapOf(404 to "Not Found", 500 to "Server Error")
+    println("12. ${errors.containsKey(404)}")
 
-    return "Средняя длина слов: %.2f".format(average)
-}
+    // 13. Отфильтровать тесты по версии
+    val scenarios = mapOf(
+        "Test1_v1" to "Passed",
+        "Test2_v2" to "Failed",
+        "Test3_v1" to "Skipped"
+    )
+    val versionTests = scenarios.filterKeys { it.contains("v1") }
+    println("13. $versionTests")
 
+    // 14. Проверить наличие неудачных тестов модулей
+    val modules = mapOf("auth" to "passed", "payment" to "failed")
+    println("14. ${modules.containsValue("failed")}")
 
-// Задача 28
-fun categorizeNumbers(numbers: List<Int>): Map<String, List<Int>> {
-    return numbers
-        .distinct()
-        .sortedDescending()
-        .groupBy {
-            if (it % 2 == 0) "четные"
-            else "нечетные"
-        }
-}
+    // 15. Добавить настройки из другого словаря
+    val settings = mutableMapOf("browser" to "Chrome")
+    val extraSettings = mapOf("os" to "Windows", "language" to "ru")
+    settings.putAll(extraSettings)
+    println("15. $settings")
 
+    // 16. Объединить два неизменяемых словаря
+    val bugs1 = mapOf("bug1" to "open")
+    val bugs2 = mapOf("bug2" to "fixed")
+    val allBugs = bugs1 + bugs2
+    println("16. $allBugs")
 
-// Задача 29
-fun findAge(ages: List<Int?>, minAge: Int): Int? {
-    return ages
-        .filterNotNull()
-        .firstOrNull { it > minAge }
+    // 17. Очистить словарь
+    val lastRun = mutableMapOf("login" to "passed", "payment" to "failed")
+    lastRun.clear()
+    println("17. $lastRun")
+
+    // 18. Убрать пропущенные тесты
+    val report = mapOf("login" to "passed", "payment" to "skipped", "logout" to "failed")
+    val filteredReport = report.filterValues { it != "skipped" }
+    println("18. $filteredReport")
+
+    // 19. Создать копию словаря без нескольких конфигураций
+    val configurations = mapOf(
+        "browser" to "Chrome",
+        "os" to "Windows",
+        "language" to "ru"
+    )
+    val newConfigurations = configurations - listOf("os", "language")
+    println("19. $newConfigurations")
+
+    // 20. Преобразовать словарь в список строк
+    val testReport = mapOf("Test1" to "passed", "Test2" to "failed")
+    val reportList = testReport.map { "${it.key}: ${it.value}" }
+    println("20. $reportList")
+
+    // 21. Преобразовать изменяемый словарь в неизменяемый
+    val mutableResults = mutableMapOf("login" to "passed", "payment" to "failed")
+    val archivedResults = mutableResults.toMap()
+    println("21. $archivedResults")
+
+    // 22. Преобразовать числовые ID в строки
+    val testIds = mapOf(101 to 10, 102 to 20, 103 to 30)
+    val stringIds = testIds.mapKeys { it.key.toString() }
+    println("22. $stringIds")
+
+    // 23. Увеличить время ответа на 10%
+    val performance = mapOf("1.0" to 100.0, "2.0" to 200.0)
+    val newPerformance = performance.mapValues { it.value * 1.10 }
+    println("23. $newPerformance")
+
+    // 24. Проверить, пуст ли словарь
+    val compilationErrors = mapOf<String, String>()
+    println("24. ${compilationErrors.isEmpty()}")
+
+    // 25. Проверить, что словарь не пуст
+    val loadResults = mapOf("service1" to "passed")
+    println("25. ${loadResults.isNotEmpty()}")
+
+    // 26. Проверить, что все тесты прошли успешно
+    val autoTests = mapOf("login" to "passed", "logout" to "passed")
+    println("26. ${autoTests.all { it.value == "passed" }}")
+
+    // 27. Проверить, есть ли хотя бы один тест с ошибкой
+    val checkResults = mapOf("login" to "passed", "payment" to "failed")
+    println("27. ${checkResults.any { it.value == "failed" }}")
+
+    // 28. Найти неуспешные optional тесты
+    val serviceTests = mapOf(
+        "optionalLogin" to "failed",
+        "optionalPayment" to "passed",
+        "requiredLogin" to "failed",
+        "optionalProfile" to "failed"
+    )
+    val failedOptional = serviceTests.filterNot {
+        it.value == "passed" || !it.key.contains("optional")
+    }
+    println("28. $failedOptional")
 }
