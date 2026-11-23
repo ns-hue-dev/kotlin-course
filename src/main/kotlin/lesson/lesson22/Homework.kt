@@ -94,8 +94,6 @@ fun task9() {
         println("IllegalStateException: ${e.message}")
     }
 
-    // Демонстрация обработки OutOfMemoryError.
-    // Запускать только отдельно.
     /*
     try {
         task7()
@@ -104,8 +102,6 @@ fun task9() {
     }
     */
 
-    // Демонстрация обработки StackOverflowError.
-    // Запускать только отдельно.
     /*
     try {
         task8()
